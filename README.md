@@ -35,16 +35,16 @@ cd Desktop
 ```
 #### ทำการ clone git ด้วยคำสั่ง
 ```
-git clone https://github.com/raveporns/Assingment_4King.git
+git clone https://github.com/raveporns/Assingment_4Kings.git
 ```
 #### ทำการเข้าถึงโฟลเดอร์ Assingment_4King ด้วยคำสั่ง
 ```
-cd Assingment_4King
+cd Assingment_4Kings
 ```
 
 #### ทำการเข้าถึงโฟลเดอร์ Assingment_4King ด้วยคำสั่ง
 ```
-cd Assingment_4King
+cd Assingment_4Kings
 ```
 #### จากนั้นทำการเปิดโฟลเดอร์ Assingment_4King ใน Visual Studio Code ด้วยคำสั่ง
 ```
