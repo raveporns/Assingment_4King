@@ -9,42 +9,49 @@ function App() {
   const [check, setCheck] = useState(false)
 
   const getQuantity = (e) => {
-
+    
     e.preventDefault();
     const inputQuantity = document.getElementById('inputField').value;
-    if (!inputQuantity) {
-      alert('กรุณาใส่จำนวนผู้เข้าร่วมคัดสรร');
+    if (!inputQuantity || inputQuantity == 0 ||inputQuantity<0 ) {
+      alert('กรุณากรอกจำนวนผู้เข้าร่วมคัดสรรให้ถูกต้อง');
+      setCheck(false);
+    }else if(isNaN(inputQuantity)){
+      alert('กรุณากรอกจำนวนผู้เข้าร่วมคัดสรรให้ถูกต้อง');
     }
+    else{
     setQuantity(inputQuantity);
+    }
   };
+
 
   const addData = (e) => {
     e.preventDefault();
     const updatedData = Array.from({ length: quantity }, (_, index) => {
       const name = document.getElementById(`name-surname-${index}`).value;
-      // const name = ""
-      if (name == "") {
-        alert('please fill name-surname');
-        return null; // Exit early if any name is not filled
+      if (name === "") {
+        alert('กรุณากรอกชื่อให้ครบถ้วน');
+        setCheck(false);
+        //return null; // Exit early if any name is not filled
       }
 
       return { name };
 
-    }).filter(Boolean); // Remove any null values from the array
+    })//.filter(Boolean); // Remove any null values from the array
+
+    
     setCheck(true);
     setData(updatedData);
-  };
+  }
+  
 
   const resetData = () => {
     setData([]);
     setQuantity(0);
     document.getElementById('inputField').value = ''; // ให้ค่าในช่องนำเป็นค่าว่าง
-    document.getElementById('inputField').placeholder = 'Enter Quantity';
+    document.getElementById('inputField').placeholder = 'กรอกจำนวนผู้เข้าร่วมคัดสรร';
   };
 
-
   const generateTableRows = (groupName, groupData) => {
-    console.log(groupData)
     return groupData.map((item, index) => (
       <tr key={index}>
         <th scope="row">{index + 1}</th>
@@ -74,17 +81,15 @@ function App() {
               <div className="Quantity">
                 <form action="">
                   <div className="mb-3">
-                    {/* <label htmlFor='quantity' className='text'>Quantity</label> */}
                     <input type="int" className='form-control' placeholder='Enter Quantity' id='inputField' />
                   </div>
-                  <button type='button' className='btn-success2' onClick={getQuantity}>OK</button>
+                  <button type='button' className='btn-success2' onClick={getQuantity}>ยืนยัน</button>
                 </form>
               </div>
               <hr className='line'/>
               <div className='Quantity'>
                 <h5 className='text'>จำนวนผู้เข้ารับการคัดสรร {quantity} คน</h5>
               </div>
-              <form onSubmit={addData}>
                 {Array(Number(quantity)).fill().map((_, index) => (
                   <div key={index} className="Name-Surname">
                     <form action="">
@@ -101,14 +106,13 @@ function App() {
                   </div>
                 ))}
                 <div className="button-container">
-                  <button type='reset' className='btn-danger' onClick={resetData} style={{ marginRight: '8px' }}>
+                  <button type='reset' className='btn-danger' onClick={resetData} style={{ marginRight: '10px' }}>
                     Reset
                   </button>
-                  <button type='submit' className='btn-success'>
-                    ตกลง
+                  <button type='submit' className='btn-success' onClick={addData}>
+                    รายชื่อที่ได้รับการจัดสรรแล้ว
                   </button>
                 </div>
-              </form>
             </div>
           </div>
         </>
