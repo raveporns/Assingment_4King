@@ -61,4 +61,4 @@ yarn dev
 
 
 ### หมวกคัดสรรเข้าสถาบัน 4Kings ที่รันบน Vercel
-https://assingment-4-king-gdou.vercel.app/)https://assingment-4-king-gdou.vercel.app/
+https://assingment-4-king.vercel.app/
